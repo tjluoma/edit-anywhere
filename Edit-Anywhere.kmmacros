@@ -339,18 +339,73 @@ fi
 						<string>Variable</string>
 					</dict>
 					<dict>
+						<key>Conditions</key>
+						<dict>
+							<key>ConditionList</key>
+							<array>
+								<dict>
+									<key>ConditionType</key>
+									<string>Menu</string>
+									<key>MenuConditionSelectionType</key>
+									<string>Is</string>
+									<key>MenuConditionType</key>
+									<string>IsEnabled</string>
+									<key>MenuModifiers</key>
+									<integer>256</integer>
+									<key>MenuShortcut</key>
+									<string>C</string>
+									<key>MenuTitle</key>
+									<string>Paste</string>
+								</dict>
+							</array>
+							<key>ConditionListMatch</key>
+							<string>All</string>
+						</dict>
+						<key>ElseActions</key>
+						<array>
+							<dict>
+								<key>IsActive</key>
+								<true/>
+								<key>IsDisclosed</key>
+								<false/>
+								<key>KeyCode</key>
+								<integer>9</integer>
+								<key>MacroActionType</key>
+								<string>SimulateKeystroke</string>
+								<key>Modifiers</key>
+								<integer>256</integer>
+								<key>ReleaseAll</key>
+								<false/>
+							</dict>
+						</array>
 						<key>IsActive</key>
 						<true/>
 						<key>IsDisclosed</key>
-						<false/>
-						<key>KeyCode</key>
-						<integer>9</integer>
+						<true/>
 						<key>MacroActionType</key>
-						<string>SimulateKeystroke</string>
-						<key>Modifiers</key>
-						<integer>256</integer>
-						<key>ReleaseAll</key>
-						<false/>
+						<string>IfThenElse</string>
+						<key>ThenActions</key>
+						<array>
+							<dict>
+								<key>IsActive</key>
+								<true/>
+								<key>IsDisclosed</key>
+								<true/>
+								<key>MacroActionType</key>
+								<string>SelectMenuItem</string>
+								<key>Menu</key>
+								<array>
+									<string>Edit</string>
+									<string>Paste</string>
+								</array>
+								<key>StopOnFailure</key>
+								<true/>
+								<key>TargetingType</key>
+								<string>Front</string>
+							</dict>
+						</array>
+						<key>TimeOutAbortsMacro</key>
+						<true/>
 					</dict>
 					<dict>
 						<key>DisplayKind</key>
@@ -395,7 +450,7 @@ exit
 				<key>IsActive</key>
 				<true/>
 				<key>ModificationDate</key>
-				<real>399506897.54051602</real>
+				<real>399507107.22194397</real>
 				<key>Name</key>
 				<string>Edit Anywhere</string>
 				<key>Triggers</key>
