@@ -299,7 +299,7 @@ then
 	fi
 
 
-	echo "[Keyboard Maestro script] $ERROR" | /usr/bin/tee -a "$FILE"
+	echo "[Keyboard Maestro script] $ERROR. You will have to manually paste your text back to the original application." | /usr/bin/tee -a "$FILE"
 
 	/usr/bin/open -W -t "$FILE"
 
@@ -395,7 +395,7 @@ exit
 				<key>IsActive</key>
 				<true/>
 				<key>ModificationDate</key>
-				<real>399506277.91139001</real>
+				<real>399506739.83719301</real>
 				<key>Name</key>
 				<string>Edit Anywhere</string>
 				<key>Triggers</key>
