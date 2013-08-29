@@ -250,7 +250,7 @@
 						<key>Text</key>
 						<string>#!/bin/zsh -f
 
-FILE="$HOME/.edit_anywhere"
+FILE="$HOME/.edit_anywhere.txt"
 
 if [ -e "$FILE" ]
 then
@@ -263,7 +263,6 @@ then
 
 fi
 
-FILE="$HOME/.edit_anywhere.txt"
 
 if [ -e "$FILE" ]
 then
@@ -421,7 +420,7 @@ fi
 						<key>Text</key>
 						<string>#!/bin/zsh -f
 
-FILE="$HOME/.edit_anywhere"
+FILE="$HOME/.edit_anywhere.txt"
 
 if [ -e "$FILE" ]
 then
@@ -450,7 +449,7 @@ exit
 				<key>IsActive</key>
 				<true/>
 				<key>ModificationDate</key>
-				<real>399507107.22194397</real>
+				<real>399507254.032848</real>
 				<key>Name</key>
 				<string>Edit Anywhere</string>
 				<key>Triggers</key>
