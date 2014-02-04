@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Activate</key>
+		<string>Normal</string>
+		<key>IsActive</key>
+		<true/>
+		<key>Macros</key>
+		<array>
+			<dict>
+				<key>Actions</key>
+				<array>
+					<dict>
+						<key>IsActive</key>
+						<true/>
+						<key>IsDisclosed</key>
+						<true/>
+						<key>KeyCode</key>
+						<integer>0</integer>
+						<key>MacroActionType</key>
+						<string>SimulateKeystroke</string>
+						<key>Modifiers</key>
+						<integer>256</integer>
+						<key>ReleaseAll</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>IsActive</key>
+						<true/>
+						<key>IsDisclosed</key>
+						<true/>
+						<key>KeyCode</key>
+						<integer>0</integer>
+						<key>MacroActionType</key>
+						<string>SimulateKeystroke</string>
+						<key>Modifiers</key>
+						<integer>256</integer>
+						<key>ReleaseAll</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>IsActive</key>
+						<true/>
+						<key>IsDisclosed</key>
+						<false/>
+						<key>MacroActionType</key>
+						<string>Comment</string>
+						<key>Text</key>
+						<string>If we don't pause, sometimes the 'cut' will happen too quickly and not catch the text. Adjust as necessary.</string>
+						<key>Title</key>
+						<string>Why Pause?</string>
+					</dict>
+					<dict>
+						<key>IsActive</key>
+						<true/>
+						<key>IsDisclosed</key>
+						<true/>
+						<key>MacroActionType</key>
+						<string>Pause</string>
+						<key>Time</key>
+						<string>1</string>
+						<key>TimeOutAbortsMacro</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>IsActive</key>
+						<true/>
+						<key>IsDisclosed</key>
+						<true/>
+						<key>KeyCode</key>
+						<integer>7</integer>
+						<key>MacroActionType</key>
+						<string>SimulateKeystroke</string>
+						<key>Modifiers</key>
+						<integer>256</integer>
+						<key>ReleaseAll</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>Append</key>
+						<true/>
+						<key>Destination</key>
+						<string>~/.edit_anywhere.txt</string>
+						<key>Encoding</key>
+						<string>UTF8</string>
+						<key>Format</key>
+						<string>PlainText</string>
+						<key>IsActive</key>
+						<true/>
+						<key>IsDisclosed</key>
+						<true/>
+						<key>MacroActionType</key>
+						<string>WriteFile</string>
+						<key>Name</key>
+						<string>9C14D690-4B6C-4AEA-B506-AC37BE262E2C</string>
+						<key>RedundandDisplayName</key>
+						<string>Default Clipboard</string>
+						<key>Source</key>
+						<string>Clipboard</string>
+						<key>Text</key>
+						<string></string>
+						<key>Variable</key>
+						<string>Variable</string>
+					</dict>
+					<dict>
+						<key>Action</key>
+						<string>ByTyping</string>
+						<key>IsActive</key>
+						<true/>
+						<key>IsDisclosed</key>
+						<true/>
+						<key>MacroActionType</key>
+						<string>InsertText</string>
+						<key>Paste</key>
+						<false/>
+						<key>Text</key>
+						<string>(Waiting for EditAnywhere)</string>
+					</dict>
+					<dict>
+						<key>IsActive</key>
+						<true/>
+						<key>IsDisclosed</key>
+						<true/>
+						<key>KeyCode</key>
+						<integer>0</integer>
+						<key>MacroActionType</key>
+						<string>SimulateKeystroke</string>
+						<key>Modifiers</key>
+						<integer>256</integer>
+						<key>ReleaseAll</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>IsActive</key>
+						<true/>
+						<key>IsDisclosed</key>
+						<true/>
+						<key>MacroActionType</key>
+						<string>Pause</string>
+						<key>Time</key>
+						<string>.5</string>
+						<key>TimeOutAbortsMacro</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>DisplayKind</key>
+						<string>Window</string>
+						<key>IsActive</key>
+						<true/>
+						<key>IsDisclosed</key>
+						<true/>
+						<key>MacroActionType</key>
+						<string>ExecuteShellScript</string>
+						<key>Path</key>
+						<string>/Users/luomat/Dropbox/bin/km-edit-anywhere.sh</string>
+						<key>Text</key>
+						<string>#!/bin/zsh -f
+
+FILE="$HOME/.edit_anywhere.txt"
+
+#
+#	2013-09-16
+#	the first part of this script is now done by Keyboard Maestro actions 
+#	instead of this script
+#
+
+# if [ -e "$FILE" ]
+# then
+#
+# 		zmodload zsh/datetime
+#
+# 		TIME=$(strftime "%Y-%m-%d--%H.%M.%S" "$EPOCHSECONDS")
+#
+# 		mv -f "$FILE" "$HOME/.Trash/edit_anywhere.$TIME.txt"
+#
+# fi
+#
+#
+# if [ -e "$FILE" ]
+# then
+#
+# 	/usr/bin/pbpaste &gt;&gt; "$FILE"
+# else
+# 	/usr/bin/pbpaste &gt; "$FILE"
+# fi
+
+# --resume tells BBEdit to open whichever app the text came from
+
+/usr/local/bin/bbedit \
+ 	--language 'Markdown' \
+	--create-unix \
+	--new-window \
+	--resume \
+	--wait \
+	-- "$FILE"
+
+
+EXIT="$?"
+
+if [ "$EXIT" != "0" ]
+then
+
+	if [ -x /usr/local/bin/bbedit ]
+	then
+
+			ERROR="/usr/local/bin/bbedit exists but exited with an error: EXIT = $EXIT"
+
+	else
+			ERROR="/usr/local/bin/bbedit does not exist"
+	fi
+
+
+	echo "[Keyboard Maestro script] $ERROR. You will have to manually paste your text back to the original application." | /usr/bin/tee -a "$FILE"
+
+	/usr/bin/open -W -t "$FILE"
+
+	exit 1
+fi
+</string>
+						<key>TimeOutAbortsMacro</key>
+						<true/>
+						<key>TimeOutPeriod</key>
+						<real>86400</real>
+						<key>TrimResults</key>
+						<true/>
+						<key>TrimResultsNew</key>
+						<true/>
+						<key>UseText</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>Destination</key>
+						<string>Clipboard</string>
+						<key>IsActive</key>
+						<true/>
+						<key>IsDisclosed</key>
+						<false/>
+						<key>MacroActionType</key>
+						<string>ReadFile</string>
+						<key>Name</key>
+						<string>F8278D69-B461-4C5A-8840-E4A79AE16A4F</string>
+						<key>RedundandDisplayName</key>
+						<string>KMCB_EDIT_ANYWHERE</string>
+						<key>Source</key>
+						<string>~/.edit_anywhere.txt</string>
+						<key>Variable</key>
+						<string>Variable</string>
+					</dict>
+					<dict>
+						<key>Conditions</key>
+						<dict>
+							<key>ConditionList</key>
+							<array>
+								<dict>
+									<key>ConditionType</key>
+									<string>Menu</string>
+									<key>MenuConditionSelectionType</key>
+									<string>Is</string>
+									<key>MenuConditionType</key>
+									<string>IsEnabled</string>
+									<key>MenuModifiers</key>
+									<integer>256</integer>
+									<key>MenuShortcut</key>
+									<string>C</string>
+									<key>MenuTitle</key>
+									<string>Paste</string>
+								</dict>
+							</array>
+							<key>ConditionListMatch</key>
+							<string>All</string>
+						</dict>
+						<key>ElseActions</key>
+						<array>
+							<dict>
+								<key>IsActive</key>
+								<true/>
+								<key>IsDisclosed</key>
+								<false/>
+								<key>KeyCode</key>
+								<integer>9</integer>
+								<key>MacroActionType</key>
+								<string>SimulateKeystroke</string>
+								<key>Modifiers</key>
+								<integer>256</integer>
+								<key>ReleaseAll</key>
+								<false/>
+							</dict>
+						</array>
+						<key>IsActive</key>
+						<true/>
+						<key>IsDisclosed</key>
+						<false/>
+						<key>MacroActionType</key>
+						<string>IfThenElse</string>
+						<key>ThenActions</key>
+						<array>
+							<dict>
+								<key>IsActive</key>
+								<true/>
+								<key>IsDisclosed</key>
+								<true/>
+								<key>MacroActionType</key>
+								<string>SelectMenuItem</string>
+								<key>Menu</key>
+								<array>
+									<string>Edit</string>
+									<string>Paste</string>
+								</array>
+								<key>StopOnFailure</key>
+								<true/>
+								<key>TargetingType</key>
+								<string>Front</string>
+							</dict>
+						</array>
+						<key>TimeOutAbortsMacro</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>DisplayKind</key>
+						<string>Window</string>
+						<key>IsActive</key>
+						<true/>
+						<key>IsDisclosed</key>
+						<true/>
+						<key>MacroActionType</key>
+						<string>ExecuteShellScript</string>
+						<key>Path</key>
+						<string></string>
+						<key>Text</key>
+						<string>#!/bin/zsh -f
+
+FILE="$HOME/.edit_anywhere.txt"
+
+if [ -e "$FILE" ]
+then
+
+		zmodload zsh/datetime
+
+		TIME=$(strftime "%Y-%m-%d--%H.%M.%S" "$EPOCHSECONDS")
+
+		mv -f "$FILE" "$HOME/.Trash/edit_anywhere.$TIME.txt"
+
+fi
+
+exit
+
+</string>
+						<key>TimeOutAbortsMacro</key>
+						<true/>
+						<key>TrimResults</key>
+						<true/>
+						<key>TrimResultsNew</key>
+						<true/>
+						<key>UseText</key>
+						<true/>
+					</dict>
+				</array>
+				<key>IsActive</key>
+				<true/>
+				<key>ModificationDate</key>
+				<real>413237908.35576499</real>
+				<key>Name</key>
+				<string>Edit Anywhere (BBEdit)</string>
+				<key>Triggers</key>
+				<array>
+					<dict>
+						<key>FireType</key>
+						<string>Pressed</string>
+						<key>KeyCode</key>
+						<integer>12</integer>
+						<key>MacroTriggerType</key>
+						<string>HotKey</string>
+						<key>Modifiers</key>
+						<integer>6912</integer>
+					</dict>
+				</array>
+				<key>UID</key>
+				<string>63DA32F6-8BA8-49AD-B4BC-C9AC7761D87E</string>
+			</dict>
+		</array>
+		<key>Name</key>
+		<string>Global Macro Group</string>
+		<key>UID</key>
+		<string>DA8512F7-F323-46B1-8319-752E0495CFD0</string>
+	</dict>
+</array>
+</plist>

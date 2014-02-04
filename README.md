@@ -48,6 +48,12 @@ Like so:
 
 * It would also be possible to edit the Keyboard Maestro macro to check to see which app the text is coming from an use a different editor depending on that source application. (For example, if the front-most app is Mailplane, I want to edit text in MultiMarkdown Composer vs if the front-most app is Safari I want to edit text in BBEdit.) I just wanted something to give me the base functionality back. I'm not sure whether or not I'll extend it to add that level of customization, mostly because I almost always want to edit text in BBEdit.
 
+### App-specific Macros ###
+
+[Edit-Anywhere-BBEdit.kmmacros][] — 2014-02-04: This is the macro that I am now using with BBEdit which is the easiest app to use it with since the `bbedit` command-line tool has a `--resume` feature.
+
+[Edit-Anywhere-MultiMarkdown.kmmacros][] -- 2014-02-04: A macro to use with [MultiMarkdown Composer](http://multimarkdown.com) which demonstrates how to adapt this to work with any application using OS X’s `open` command.
+
 
 [1]: http://www.hogbaysoftware.com/products/quickcursor
 [2]: http://barebones.com
