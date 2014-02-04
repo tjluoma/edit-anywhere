@@ -50,9 +50,11 @@ Like so:
 
 ### App-specific Macros ###
 
-[Edit-Anywhere-BBEdit.kmmacros][] — 2014-02-04: This is the macro that I am now using with BBEdit which is the easiest app to use it with since the `bbedit` command-line tool has a `--resume` feature.
+*Added on 2014-02-04:*
 
-[Edit-Anywhere-MultiMarkdown.kmmacros][] -- 2014-02-04: A macro to use with [MultiMarkdown Composer](http://multimarkdown.com) which demonstrates how to adapt this to work with any application using OS X’s `open` command.
+[Edit-Anywhere-BBEdit.kmmacros](https://raw.github.com/tjluoma/edit-anywhere/master/Edit-Anywhere-BBEdit.kmmacros) -- This is the macro that I am now using with BBEdit which is the easiest app to use it with since the `bbedit` command-line tool has a `--resume` feature.
+
+[Edit-Anywhere-MultiMarkdown.kmmacros](https://raw.github.com/tjluoma/edit-anywhere/master/Edit-Anywhere-MultiMarkdown.kmmacros) -- A macro to use with [MultiMarkdown Composer](http://multimarkdown.com) which demonstrates how to adapt this to work with any application using OS X’s `open` command.
 
 
 [1]: http://www.hogbaysoftware.com/products/quickcursor
