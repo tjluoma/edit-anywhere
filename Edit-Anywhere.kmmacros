@@ -164,13 +164,13 @@ Do not change the variable name (EDIT_ANYWHERE_FILE) just change the part in the
 						<key>ActionName</key>
 						<string>This is where the magic happens</string>
 						<key>DisplayKind</key>
-						<string>Window</string>
+						<string>None</string>
 						<key>IncludeStdErr</key>
 						<true/>
 						<key>IsActive</key>
 						<true/>
 						<key>IsDisclosed</key>
-						<false/>
+						<true/>
 						<key>MacroActionType</key>
 						<string>ExecuteShellScript</string>
 						<key>Path</key>
@@ -588,7 +588,7 @@ exit 0
 				<key>IsActive</key>
 				<true/>
 				<key>ModificationDate</key>
-				<real>460506895.85840398</real>
+				<real>460507471.884552</real>
 				<key>Name</key>
 				<string>Edit Anywhere</string>
 				<key>Triggers</key>
