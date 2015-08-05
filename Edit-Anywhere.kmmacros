@@ -170,7 +170,7 @@ Do not change the variable name (EDIT_ANYWHERE_FILE) just change the part in the
 						<key>IsActive</key>
 						<true/>
 						<key>IsDisclosed</key>
-						<false/>
+						<true/>
 						<key>MacroActionType</key>
 						<string>ExecuteShellScript</string>
 						<key>Path</key>
@@ -305,7 +305,7 @@ fi
 
 EXIT="$?"
 
-if [ "$EXIT" != "1" ]
+if [ "$EXIT" != "0" ]
 then
 
 	msg "FATAL ERROR: Failed to create file at $FILE. Exit = $EXIT. Sorry."
@@ -539,7 +539,7 @@ exit 0
 				<key>IsActive</key>
 				<true/>
 				<key>ModificationDate</key>
-				<real>460503763.48495197</real>
+				<real>460503827.56181997</real>
 				<key>Name</key>
 				<string>Edit Anywhere</string>
 				<key>Triggers</key>
