@@ -170,7 +170,7 @@ Do not change the variable name (EDIT_ANYWHERE_FILE) just change the part in the
 						<key>IsActive</key>
 						<true/>
 						<key>IsDisclosed</key>
-						<true/>
+						<false/>
 						<key>MacroActionType</key>
 						<string>ExecuteShellScript</string>
 						<key>Path</key>
@@ -188,18 +188,6 @@ Do not change the variable name (EDIT_ANYWHERE_FILE) just change the part in the
 	## 	APP='MultiMarkdown Composer'
 	##
 APP='BBEdit'
-
-
-	######################################################################
-	## This is the name of the temporary file which will be used to keep
-	## your edits before it is sent back to the app where it came from.
-	##
-	## If you change this,
-	## make sure you change all of the other references to this file
-	## in the Keyboard Maestro macro
-FILE="${HOME}/${KMVAR_EDIT_ANYWHERE_FILE}"
-
-
 
 	## OS X no longer has a good way to ensure that GUI apps like
 	## Keyboard Maestro have access to your $PATH so I often just create
@@ -223,6 +211,22 @@ fi
 #
 
 
+	######################################################################
+	## This is the name of the temporary file which will be used to keep
+	## your edits before it is sent back to the app where it came from.
+	##
+	## This is now based on a variable set in the Keyboard Maestro macro
+	##
+
+	## If, for some reason, the filename is NOT set, use a reasonable default
+[[ "$KMVAR_EDIT_ANYWHERE_FILE" == "" ]] &amp;&amp; KMVAR_EDIT_ANYWHERE_FILE='edit_anywhere.txt'
+
+	## Try to protect against someone putting '..' in the file path and
+	## attempting to get out of the $HOME I don't know if this is
+	## actually necessary, but once it occurred to me, I figured I might
+	## as well add it.
+FILE=`echo "${HOME}/${KMVAR_EDIT_ANYWHERE_FILE}" | tr -s '.' '.'`
+
 
 NAME="[Edit Anywhere via Keyboard Maestro]"
 
@@ -237,7 +241,35 @@ function timestamp { strftime "%Y-%m-%d--%H.%M.%S" "$EPOCHSECONDS" }
 	# This gives us a unique reference point for when the script was launched
 TIME=`strftime "%Y-%m-%d--%H.%M.%S" "$EPOCHSECONDS"`
 
-if [ -e '/usr/local/bin/growlnotify' -a "`pgrep -x Growl`" != "" ]
+
+if (( $+commands[growlnotify] ))
+then
+		## We found the growlnotify tool installed
+	GROWLNOTIFY_FOUND='yes'
+
+		## We only check to see if Growl.app is running IFF we have
+		## found growlnotify because otherwise there's no point caring.
+
+	if [ "`pgrep -x Growl`" = "" ]
+	then
+			## Growl is NOT running
+		GROWL_RUNNING='no'
+	else
+			## Growl IS running
+		GROWL_RUNNING='yes'
+	fi
+
+else
+		## We did NOT find the growlnotify tool installed
+	GROWLNOTIFY_FOUND='no'
+
+		## We just set this to 'no' because it doesn't matter, if the
+		## growlnotify tool isn't found too.
+	GROWL_RUNNING='no'
+fi
+
+
+if [ "$GROWL_RUNNING" = "yes" -a "$GROWLNOTIFY_FOUND" = "yes" ]
 then
 	## If growlnotify is installed AND Growl.app is running, use Growl for notifications
 
@@ -262,7 +294,7 @@ then
 		then
 				## If there is an app plist where we'd expect it to be, try to get the Bundle identifier from it
 
-			TN_BUNDLE_ID=`defaults read /Applications/$APP.app/Contents/Info CFBundleIdentifier`
+			TN_BUNDLE_ID=`defaults read /Applications/${APP}.app/Contents/Info CFBundleIdentifier`
 		fi
 
 				## If we were not able to get a bundle ID, use Keyboard Maestro's
@@ -309,6 +341,12 @@ if [ "$EXIT" != "0" ]
 then
 
 	msg "FATAL ERROR: Failed to create file at $FILE. Exit = $EXIT. Sorry."
+
+		## if we can't create the file, send the contents of the
+		## pasteboard to a temp file in TextEdit at least so the user
+		## will not lose whatever they had there at least
+	/usr/bin/pbpaste | /usr/bin/open -e -f
+
 	exit 1
 fi
 
@@ -333,7 +371,18 @@ else
 fi
 
 
-if [[ (( $+commands[bbedit] )) &amp;&amp; "$APP:l" == "bbedit" ]]
+if (( $+commands[bbedit] ))
+then
+		## We found the command line bbedit tool
+	CL_BBEDIT='yes'
+else
+		## We did NOT find the command line bbedit tool
+	CL_BBEDIT='no'
+fi
+
+
+
+if [[ "$CL_BBEDIT" = "yes" &amp;&amp; "$APP:l" == "bbedit" ]]
 then
 		## IFF the user wants to use BBEdit and they have the bbedit
 		## command line tool installed, then we will use the bbedit tool
@@ -539,7 +588,7 @@ exit 0
 				<key>IsActive</key>
 				<true/>
 				<key>ModificationDate</key>
-				<real>460503827.56181997</real>
+				<real>460506895.85840398</real>
 				<key>Name</key>
 				<string>Edit Anywhere</string>
 				<key>Triggers</key>
