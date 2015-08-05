@@ -5,6 +5,8 @@
 	<dict>
 		<key>Activate</key>
 		<string>Normal</string>
+		<key>CreationDate</key>
+		<real>459387347.72605699</real>
 		<key>IsActive</key>
 		<true/>
 		<key>Macros</key>
@@ -13,232 +15,154 @@
 				<key>Actions</key>
 				<array>
 					<dict>
-						<key>Conditions</key>
-						<dict>
-							<key>ConditionList</key>
-							<array>
-								<dict>
-									<key>ConditionType</key>
-									<string>Menu</string>
-									<key>MenuConditionSelectionType</key>
-									<string>Is</string>
-									<key>MenuConditionType</key>
-									<string>IsEnabled</string>
-									<key>MenuModifiers</key>
-									<integer>256</integer>
-									<key>MenuShortcut</key>
-									<string>C</string>
-									<key>MenuTitle</key>
-									<string>Cut</string>
-								</dict>
-							</array>
-							<key>ConditionListMatch</key>
-							<string>All</string>
-						</dict>
-						<key>ElseActions</key>
-						<array>
-							<dict>
-								<key>IsActive</key>
-								<true/>
-								<key>IsDisclosed</key>
-								<false/>
-								<key>MacroActionType</key>
-								<string>Comment</string>
-								<key>Text</key>
-								<string>So we DO want to do Select All</string>
-								<key>Title</key>
-								<string>If 'Cut' is NOT enabled, then the user does NOT have selected text</string>
-							</dict>
-							<dict>
-								<key>Conditions</key>
-								<dict>
-									<key>ConditionList</key>
-									<array>
-										<dict>
-											<key>ConditionType</key>
-											<string>Menu</string>
-											<key>MenuConditionSelectionType</key>
-											<string>Is</string>
-											<key>MenuConditionType</key>
-											<string>IsEnabled</string>
-											<key>MenuModifiers</key>
-											<integer>256</integer>
-											<key>MenuShortcut</key>
-											<string>C</string>
-											<key>MenuTitle</key>
-											<string>Select All</string>
-										</dict>
-									</array>
-									<key>ConditionListMatch</key>
-									<string>All</string>
-								</dict>
-								<key>ElseActions</key>
-								<array>
-									<dict>
-										<key>IsActive</key>
-										<true/>
-										<key>IsDisclosed</key>
-										<true/>
-										<key>KeyCode</key>
-										<integer>0</integer>
-										<key>MacroActionType</key>
-										<string>SimulateKeystroke</string>
-										<key>Modifiers</key>
-										<integer>256</integer>
-										<key>ReleaseAll</key>
-										<false/>
-									</dict>
-								</array>
-								<key>IsActive</key>
-								<true/>
-								<key>IsDisclosed</key>
-								<true/>
-								<key>MacroActionType</key>
-								<string>IfThenElse</string>
-								<key>ThenActions</key>
-								<array>
-									<dict>
-										<key>IsActive</key>
-										<true/>
-										<key>IsDisclosed</key>
-										<true/>
-										<key>MacroActionType</key>
-										<string>SelectMenuItem</string>
-										<key>Menu</key>
-										<array>
-											<string>Edit</string>
-											<string>Select All</string>
-										</array>
-										<key>StopOnFailure</key>
-										<true/>
-										<key>TargetingType</key>
-										<string>Front</string>
-									</dict>
-								</array>
-								<key>TimeOutAbortsMacro</key>
-								<true/>
-							</dict>
-						</array>
+						<key>ActionName</key>
+						<string>Store to the name of the active application to the variable ‘EditAnywhereApp’</string>
 						<key>IsActive</key>
 						<true/>
 						<key>IsDisclosed</key>
-						<true/>
+						<false/>
 						<key>MacroActionType</key>
-						<string>IfThenElse</string>
-						<key>ThenActions</key>
-						<array>
-							<dict>
-								<key>IsActive</key>
-								<true/>
-								<key>IsDisclosed</key>
-								<true/>
-								<key>MacroActionType</key>
-								<string>Comment</string>
-								<key>Text</key>
-								<string>So we do NOT want to do 'select all'</string>
-								<key>Title</key>
-								<string>If 'Cut' is enabled, then the user has selected text</string>
-							</dict>
-						</array>
-						<key>TimeOutAbortsMacro</key>
-						<true/>
-					</dict>
-					<dict>
-						<key>IsActive</key>
-						<true/>
-						<key>IsDisclosed</key>
-						<true/>
-						<key>MacroActionType</key>
-						<string>Comment</string>
+						<string>SetVariableToText</string>
 						<key>Text</key>
-						<string>If we don't pause, sometimes the 'cut' will happen too quickly and not catch the text. Adjust as necessary.</string>
-						<key>Title</key>
-						<string>Why Pause?</string>
+						<string>%Application%1%</string>
+						<key>Variable</key>
+						<string>EditAnywhereApp</string>
+					</dict>
+					<dict>
+						<key>ActionName</key>
+						<string>Type the ⌘A Keystroke (This should trigger 'Select All Text')</string>
+						<key>IsActive</key>
+						<true/>
+						<key>IsDisclosed</key>
+						<false/>
+						<key>KeyCode</key>
+						<integer>0</integer>
+						<key>MacroActionType</key>
+						<string>SimulateKeystroke</string>
+						<key>Modifiers</key>
+						<integer>256</integer>
+						<key>ReleaseAll</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>ActionName</key>
+						<string>Type the ⌘A Keystroke (This should trigger 'Select All Text')</string>
+						<key>IsActive</key>
+						<true/>
+						<key>IsDisclosed</key>
+						<false/>
+						<key>KeyCode</key>
+						<integer>0</integer>
+						<key>MacroActionType</key>
+						<string>SimulateKeystroke</string>
+						<key>Modifiers</key>
+						<integer>256</integer>
+						<key>ReleaseAll</key>
+						<false/>
 					</dict>
 					<dict>
 						<key>IsActive</key>
 						<true/>
 						<key>IsDisclosed</key>
-						<true/>
+						<false/>
 						<key>MacroActionType</key>
 						<string>Pause</string>
 						<key>Time</key>
-						<string>.2</string>
+						<string>1</string>
 						<key>TimeOutAbortsMacro</key>
 						<true/>
 					</dict>
 					<dict>
-						<key>Conditions</key>
-						<dict>
-							<key>ConditionList</key>
-							<array>
-								<dict>
-									<key>ConditionType</key>
-									<string>Menu</string>
-									<key>MenuConditionSelectionType</key>
-									<string>Is</string>
-									<key>MenuConditionType</key>
-									<string>IsEnabled</string>
-									<key>MenuModifiers</key>
-									<integer>256</integer>
-									<key>MenuShortcut</key>
-									<string>C</string>
-									<key>MenuTitle</key>
-									<string>Cut</string>
-								</dict>
-							</array>
-							<key>ConditionListMatch</key>
-							<string>All</string>
-						</dict>
-						<key>ElseActions</key>
-						<array>
-							<dict>
-								<key>IsActive</key>
-								<true/>
-								<key>IsDisclosed</key>
-								<true/>
-								<key>KeyCode</key>
-								<integer>7</integer>
-								<key>MacroActionType</key>
-								<string>SimulateKeystroke</string>
-								<key>Modifiers</key>
-								<integer>256</integer>
-								<key>ReleaseAll</key>
-								<false/>
-							</dict>
-						</array>
 						<key>IsActive</key>
 						<true/>
 						<key>IsDisclosed</key>
-						<true/>
+						<false/>
+						<key>KeyCode</key>
+						<integer>7</integer>
 						<key>MacroActionType</key>
-						<string>IfThenElse</string>
-						<key>ThenActions</key>
-						<array>
-							<dict>
-								<key>IsActive</key>
-								<true/>
-								<key>IsDisclosed</key>
-								<true/>
-								<key>MacroActionType</key>
-								<string>SelectMenuItem</string>
-								<key>Menu</key>
-								<array>
-									<string>Edit</string>
-									<string>Cut</string>
-								</array>
-								<key>StopOnFailure</key>
-								<true/>
-								<key>TargetingType</key>
-								<string>Front</string>
-							</dict>
-						</array>
+						<string>SimulateKeystroke</string>
+						<key>Modifiers</key>
+						<integer>256</integer>
+						<key>ReleaseAll</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>ActionName</key>
+						<string>Save clipboard info to ~/edit_anywhere.txt</string>
+						<key>Append</key>
+						<true/>
+						<key>Destination</key>
+						<string>~/edit_anywhere.txt</string>
+						<key>Encoding</key>
+						<string>UTF8</string>
+						<key>Format</key>
+						<string>PlainText</string>
+						<key>IsActive</key>
+						<true/>
+						<key>IsDisclosed</key>
+						<false/>
+						<key>MacroActionType</key>
+						<string>WriteFile</string>
+						<key>Name</key>
+						<string>1109C933-5030-4E31-AA95-D42DCB9F5020</string>
+						<key>RedundandDisplayName</key>
+						<string>Default Clipboard</string>
+						<key>Source</key>
+						<string>Clipboard</string>
+						<key>Text</key>
+						<string></string>
+						<key>Variable</key>
+						<string>Variable</string>
+					</dict>
+					<dict>
+						<key>Action</key>
+						<string>ByTyping</string>
+						<key>IsActive</key>
+						<true/>
+						<key>IsDisclosed</key>
+						<false/>
+						<key>MacroActionType</key>
+						<string>InsertText</string>
+						<key>Paste</key>
+						<false/>
+						<key>Text</key>
+						<string>(Waiting for EditAnywhere)</string>
+					</dict>
+					<dict>
+						<key>ActionName</key>
+						<string>Type the ⌘A Keystroke (This should trigger 'Select All Text')</string>
+						<key>IsActive</key>
+						<true/>
+						<key>IsDisclosed</key>
+						<false/>
+						<key>KeyCode</key>
+						<integer>0</integer>
+						<key>MacroActionType</key>
+						<string>SimulateKeystroke</string>
+						<key>Modifiers</key>
+						<integer>256</integer>
+						<key>ReleaseAll</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>IsActive</key>
+						<true/>
+						<key>IsDisclosed</key>
+						<false/>
+						<key>MacroActionType</key>
+						<string>Pause</string>
+						<key>Time</key>
+						<string>.5</string>
 						<key>TimeOutAbortsMacro</key>
 						<true/>
 					</dict>
 					<dict>
+						<key>ActionName</key>
+						<string>This is where the magic happens</string>
 						<key>DisplayKind</key>
 						<string>Window</string>
+						<key>IncludeStdErr</key>
+						<true/>
 						<key>IsActive</key>
 						<true/>
 						<key>IsDisclosed</key>
@@ -246,41 +170,170 @@
 						<key>MacroActionType</key>
 						<string>ExecuteShellScript</string>
 						<key>Path</key>
-						<string>/Users/luomat/Dropbox/bin/km-edit-anywhere.sh</string>
+						<string>/usr/local/scripts/km-edit-anywhere-bbedit.sh</string>
 						<key>Text</key>
 						<string>#!/bin/zsh -f
 
-FILE="$HOME/.edit_anywhere.txt"
 
-if [ -e "$FILE" ]
+	## This is the app that you want to use as your external editor
+	## Note that it should not include the '.app' suffix
+	##
+	## Examples:
+	## 	APP='BBEdit'
+	## 	APP='TextWrangler'
+	## 	APP='MultiMarkdown Composer'
+	##
+APP='BBEdit'
+
+
+	######################################################################
+	## This is the name of the temporary file which will be used to keep
+	## your edits before it is sent back to the app where it came from.
+	##
+	## If you change this,
+	## make sure you change all of the other references to this file
+	## in the Keyboard Maestro macro
+FILE="$HOME/edit_anywhere.txt"
+
+	## OS X no longer has a good way to ensure that GUI apps like
+	## Keyboard Maestro have access to your $PATH so I often just create
+	## a text file in my $HOME which I can use in all my scripts. This
+	## checks to see if that file exists, and if it does not exist, it
+	## will use the PATH as defined in the second half of the if/else
+
+if [[ -e "$HOME/.path" ]]
 then
-
-		zmodload zsh/datetime
-
-		TIME=$(strftime "%Y-%m-%d--%H.%M.%S" "$EPOCHSECONDS")
-
-		mv -f "$FILE" "$HOME/.Trash/edit_anywhere.$TIME.txt"
-
-fi
-
-
-if [ -e "$FILE" ]
-then
-
-	/usr/bin/pbpaste &gt;&gt; "$FILE"
+	source "$HOME/.path"
 else
-	/usr/bin/pbpaste &gt; "$FILE"
+	PATH=/usr/local/scripts:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:/bin
 fi
 
-# --resume tells BBEdit to open whichever app the text came from
 
-/usr/local/bin/bbedit \
- 	--language 'Markdown' \
-	--create-unix \
-	--new-window \
-	--resume \
-	--wait \
-	-- "$FILE"
+
+
+####|####|####|####|####|####|####|####|####|####|####|####|####|####|####
+#
+#		You should not ~need~ to edit anything below this line
+#
+
+
+
+NAME="[Edit Anywhere via Keyboard Maestro]"
+
+	## Change this if necessary
+	## Used for pbcopy
+LANG=en_US.UTF-8
+
+zmodload zsh/datetime ## needed for strftime
+
+function timestamp { strftime "%Y-%m-%d--%H.%M.%S" "$EPOCHSECONDS" }
+
+	# This gives us a unique reference point for when the script was launched
+TIME=`strftime "%Y-%m-%d--%H.%M.%S" "$EPOCHSECONDS"`
+
+if [ -e '/usr/local/bin/growlnotify' -a "`pgrep -x Growl`" != "" ]
+then
+	## If growlnotify is installed AND Growl.app is running, use Growl for notifications
+
+	function msg
+	{
+		growlnotify \
+		--appIcon "$APP" \
+		--identifier "$NAME" \
+		--message "$@" \
+		--title "$NAME"
+
+	} ## end of msg/growl
+
+
+elif (( $+commands[terminal-notifier] ))
+then
+	## OTHERWISE, use terminal-notifier for notifications, if it is installed.
+
+	function msg
+	{
+		if [[ -e "/Applications/$APP.app/Contents/Info.plist" ]]
+		then
+				## If there is an app plist where we'd expect it to be, try to get the Bundle identifier from it
+
+			TN_BUNDLE_ID=`defaults read /Applications/$APP.app/Contents/Info CFBundleIdentifier`
+		fi
+
+				## If we were not able to get a bundle ID, use Keyboard Maestro's
+		[[ "$TN_BUNDLE_ID" == "" ]] &amp;&amp; TN_BUNDLE_ID='com.stairways.keyboardmaestro.editor'
+
+		terminal-notifier \
+			-title "$NAME" \
+			-subtitle "`timestamp`" \
+			-group "$NAME" \
+			-sender "$TN_BUNDLE_ID" \
+			-activate "$TN_BUNDLE_ID" \
+			-message "$@"
+	} ## end of msg/terminal-notifier
+
+else
+
+	function msg { echo "$NAME: $@" | tee -a "${TMPDIR-/tmp/}${NAME}.$TIME.log" }
+
+fi
+
+
+###########################################################################################
+###########################################################################################
+##
+## Here is where the action begins
+##
+
+if [[ "$KMVAR_EditAnywhereApp" == "" ]]
+then
+	## "$KMVAR_EditAnywhereApp" is not set. ABORT.
+
+	msg "Variable KMVAR_EditAnywhereApp is empty. Giving up."
+
+		## Open the file in the default text editor
+		## so the user knows their text has not been lost
+	/usr/bin/open -t "$FILE"
+
+	exit 1
+
+else
+		## Tell the user what app we took text from
+		## This is mostly a debugging comment and could be removed if it annoys you
+	msg "Will send text back to: $KMVAR_EditAnywhereApp"
+
+fi
+
+
+if [ "$APP:l" = "bbedit" -a -x /usr/local/bin/bbedit ]
+then
+		## IFF the user wants to use BBEdit and they have the bbedit
+		## command line tool installed, then we will use the bbedit tool
+
+		## if BBEdit is not running, launch it
+	pgrep -xq BBEdit || (open -a BBEdit &amp;&amp; sleep 3)
+
+		## We will try to open the app with the bbedit command,
+		## but if it fails we will open TextEdit
+	/usr/local/bin/bbedit \
+		--language 'Markdown' \
+		--create-unix \
+		--new-window \
+		--resume \
+		--wait \
+		-- "$FILE" \
+	 || open -a -n -e -W "$FILE"
+
+else
+		## if we get here, either the app is NOT BBEdit
+		## or they do not have the `bbedit` tool installed
+
+		## We will try to open the file in the requested app
+		## but if the open command fails for some reason,
+		## we will open TextEdit
+
+	open -a -n -W "$APP" "$FILE" || open -a -n -e -W "$FILE"
+
+fi # if app is BBEdit
 
 
 EXIT="$?"
@@ -288,25 +341,88 @@ EXIT="$?"
 if [ "$EXIT" != "0" ]
 then
 
-	if [ -x /usr/local/bin/bbedit ]
-	then
+	## If we get here, something went wrong
 
-			ERROR="/usr/local/bin/bbedit exists but exited with an error: EXIT = $EXIT"
+	msg "Unable to open $FILE in $APP."
 
-	else
-			ERROR="/usr/local/bin/bbedit does not exist"
-	fi
-
-
-	echo "[Keyboard Maestro script] $ERROR. You will have to manually paste your text back to the original application." | /usr/bin/tee -a "$FILE"
-
-	/usr/bin/open -W -t "$FILE"
+		## Show the file in the Finder, so the user can try to do something with it
+	/usr/bin/open -R "$FILE"
 
 	exit 1
 fi
 
+## If we get here, `open` or `bbedit` exited successfully
 
 
+	## Make sure that the app we want to paste into is actually running
+	## it *should* be, but it's possible that it either crashed or the
+	## user quit it in the interim, so let's check
+
+pgrep -xq "$KMVAR_EditAnywhereApp"
+
+EXIT="$?"
+
+if [ "$EXIT" = "1" ]
+then
+
+		## If we get here, the app is NOT running, so let's tell the user
+		## that we are launching it.
+
+	msg "Launching $KMVAR_EditAnywhereApp so we can paste to it"
+
+
+		## Here is where we actually launch the app
+	open -a "$KMVAR_EditAnywhereApp"
+
+		## now we need to give it a few seconds to get itself running
+		## This is guesswork, because we don't know how long it will
+		## take for the app to launch and be ready to accept input
+	sleep 5
+fi
+
+		## Tell the user we are ready to paste information back to the source app
+	msg "Pasting text to $KMVAR_EditAnywhereApp"
+
+	## Activate the app
+	## NOTE: originally this was not happening fast enough
+	## for it to be ready to accept a 'paste'
+	## when this script finished
+	## so I added some extra 'padding'
+	## and an extra 'open' call
+	## This should not harm anything.
+
+open -a "$KMVAR_EditAnywhereApp"
+
+	## wait a second
+sleep 1
+
+	## No no, REALLY activate the app
+open -a "$KMVAR_EditAnywhereApp"
+
+
+	## copy the file back to the pasteboard
+pbcopy &lt; "$FILE"
+
+	## OK, now we are done with the FILE so we have to either leave it there,
+	## 	delete it, or move it to the trash.
+	## I don't want to leave it there when it has already been used,
+	##	and I don't want to delete it in case something went wrong
+	## So I'm going to move it to the trash instead
+	## AND I'm going to rename the file with the current time stamp so if I
+	## happen to have several of these and need to recover one,
+	## I can do that, as long as I haven't emptied my trash
+
+		## This will be 'edit_anywhere' without the path or extension
+		## unless you changed $FILE
+	SHORT="$FILE:t:r"
+
+		## This will be 'txt' unless you changed $FILE
+	EXT="$FILE:e"
+
+/bin/mv -n "$FILE" "$HOME/.Trash/$SHORT.`timestamp`.$EXT"
+
+exit 0
+#EOF
 </string>
 						<key>TimeOutAbortsMacro</key>
 						<true/>
@@ -320,24 +436,8 @@ fi
 						<true/>
 					</dict>
 					<dict>
-						<key>Destination</key>
-						<string>Clipboard</string>
-						<key>IsActive</key>
-						<true/>
-						<key>IsDisclosed</key>
-						<false/>
-						<key>MacroActionType</key>
-						<string>ReadFile</string>
-						<key>Name</key>
-						<string>45BA8632-47A5-40DE-836D-607B4E8E39A7</string>
-						<key>RedundandDisplayName</key>
-						<string>KMCB_EDIT_ANYWHERE</string>
-						<key>Source</key>
-						<string>~/.edit_anywhere.txt</string>
-						<key>Variable</key>
-						<string>Variable</string>
-					</dict>
-					<dict>
+						<key>ActionName</key>
+						<string>Paste contents of file back to "Source" app</string>
 						<key>Conditions</key>
 						<dict>
 							<key>ConditionList</key>
@@ -366,7 +466,7 @@ fi
 								<key>IsActive</key>
 								<true/>
 								<key>IsDisclosed</key>
-								<false/>
+								<true/>
 								<key>KeyCode</key>
 								<integer>9</integer>
 								<key>MacroActionType</key>
@@ -380,7 +480,7 @@ fi
 						<key>IsActive</key>
 						<true/>
 						<key>IsDisclosed</key>
-						<true/>
+						<false/>
 						<key>MacroActionType</key>
 						<string>IfThenElse</string>
 						<key>ThenActions</key>
@@ -397,8 +497,6 @@ fi
 									<string>Edit</string>
 									<string>Paste</string>
 								</array>
-								<key>StopOnFailure</key>
-								<true/>
 								<key>TargetingType</key>
 								<string>Front</string>
 							</dict>
@@ -406,50 +504,13 @@ fi
 						<key>TimeOutAbortsMacro</key>
 						<true/>
 					</dict>
-					<dict>
-						<key>DisplayKind</key>
-						<string>Window</string>
-						<key>IsActive</key>
-						<true/>
-						<key>IsDisclosed</key>
-						<true/>
-						<key>MacroActionType</key>
-						<string>ExecuteShellScript</string>
-						<key>Path</key>
-						<string></string>
-						<key>Text</key>
-						<string>#!/bin/zsh -f
-
-FILE="$HOME/.edit_anywhere.txt"
-
-if [ -e "$FILE" ]
-then
-
-		zmodload zsh/datetime
-
-		TIME=$(strftime "%Y-%m-%d--%H.%M.%S" "$EPOCHSECONDS")
-
-		mv -f "$FILE" "$HOME/.Trash/edit_anywhere.$TIME.txt"
-
-fi
-
-exit
-
-</string>
-						<key>TimeOutAbortsMacro</key>
-						<true/>
-						<key>TrimResults</key>
-						<true/>
-						<key>TrimResultsNew</key>
-						<true/>
-						<key>UseText</key>
-						<true/>
-					</dict>
 				</array>
+				<key>CreationDate</key>
+				<real>459387347.72605699</real>
 				<key>IsActive</key>
 				<true/>
 				<key>ModificationDate</key>
-				<real>399507254.032848</real>
+				<real>460499322.459104</real>
 				<key>Name</key>
 				<string>Edit Anywhere</string>
 				<key>Triggers</key>
@@ -458,7 +519,7 @@ exit
 						<key>FireType</key>
 						<string>Pressed</string>
 						<key>KeyCode</key>
-						<integer>12</integer>
+						<integer>11</integer>
 						<key>MacroTriggerType</key>
 						<string>HotKey</string>
 						<key>Modifiers</key>
@@ -471,6 +532,8 @@ exit
 		</array>
 		<key>Name</key>
 		<string>Global Macro Group</string>
+		<key>ToggleMacroUID</key>
+		<string>4948A9C1-5CD3-4AA1-A25D-9D29C5471ED8</string>
 		<key>UID</key>
 		<string>DA8512F7-F323-46B1-8319-752E0495CFD0</string>
 	</dict>
