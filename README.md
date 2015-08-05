@@ -23,39 +23,38 @@ Like so:
 1. User presses a keyboard shortcut which has been defined in Keyboard Maestro which triggers a macro which I call 'edit anywhere' (or "EA" for short).
 
 2. EA checks to see if the menu item 'cut' is enabled. 
-	*	if yes, then EA assumes that you have some text selected, and that is the text you want to edit in BBEdit.
+	*	if yes, then EA assumes that you have some text selected, and that is the text you want to edit.
 	*	if no, EA will do 'Select All' (using either the menu item or ⌘ + A depending on which is available)
 	
-3.	EA will then 'cut' the text from step 2 and save it to a file `~/.edit_anywhere`. That file is 'hidden' in your home directory, which means that:
+3.	EA will then 'cut' the text from step 2 and save it to a file `~/edit_anywhere.txt`. That file is in your home directory, which means that:
 	*	you can save it as often as you like
 	*	if you reboot your computer (or, heaven forbid, it crashes) the file will still be there
 	*	it is secure, at least in as much as no one else should be able to read it unless they already have access to your account.
 	
-4.	EA will then open the file in BBEdit using the command-line `bbedit` tool which comes with BBEdit. (Note: if you purchased BBEdit from the Mac App Store you will have to [download and install the command line tools from BareBones.com][6].)
+4.	EA will then open the file in your editor of choice
+	*	If you use BBEdit and have the `bbedit` command-line tool installed, the script will use that. The file will open in BBEdit and the script will pause until you close the file in BBEdit. You do not have to quit the BBEdit app, just close the window or ‘tab’ where you had been editing the document.  (Note: if you purchased BBEdit from the Mac App Store you will have to [download and install the command line tools from BareBones.com][6].)
 
-5. When you close the `~/.edit_anywhere` file in BBEdit, it will re-activate the app that the text came from. (Note: this step is not foolproof. If you have quit the app or changed it in some way since editing the text, it might not be possible to send the text back to it. QuickCursor had the same problem.)
+	*	If you use another editor, it will be opened using `open -a YourAppHere -n -W` which means that a new instance of the app will be opened (even if it is already running) and the script will wait until that _instance_ of the app has quit (not just the window closed, but the app quit).
 
-6. EA will then paste the contents of that file into the original app.
 
-7. EA will then rename the `~/.edit_anywhere` file to something like `edit_anywhere.2013-08-29--16.30.15.txt` (representing the current date and 24h-time) and move it to the trash (~/.Trash/) in case you need to recover it.
+5. EA will then paste the contents of `~/edit_anywhere.txt` into the original app.
+
+8. EA will then rename the `~/edit_anywhere.txt` file to something like `edit_anywhere.2015-08-05--16.30.15.txt` (representing the current date and 24h-time) and move it to the trash (~/.Trash/). This is intended as a safety net in case you need to recover text from the file for some reason. (For example, if pasting the contents of the file into the original app did not work for some reason.)
 
 
 ### There are a few provisos, a couple of *quid pro quos*.
 
-* This will only work in 'regular' applications. Specifically if will not work in applications which only exit in the menu bar.
+* This will only work in ‘regular’ applications. Specifically, if will ***not*** work in applications which only exist in the menu bar. This limitation was present in QuickCursor too. When in doubt, I recommend testing the “round trip” in your app of choice to make sure that it works as expected.
 
-* Theoretically you could re-work this to use Mac OS X's `open` command using something like `open -n -W -a YourApp ~/.edit_anywhere.txt`. However, if you did that you would have to store the name of the application where the text came from in a Keyboard Maestro variable and then add a command in your Keyboard Maestro macro to re-activate that app before pasting in the text. That isn't difficult to do, in fact the original version of my macro did that, but BBEdit's command-line `bbedit` tool has a `--resume` flag built right in which is designed to do just that, so I am using it instead of reinventing the functionality.
+### Future Feature Ideas
 
-* It would also be possible to edit the Keyboard Maestro macro to check to see which app the text is coming from an use a different editor depending on that source application. (For example, if the front-most app is Mailplane, I want to edit text in MultiMarkdown Composer vs if the front-most app is Safari I want to edit text in BBEdit.) I just wanted something to give me the base functionality back. I'm not sure whether or not I'll extend it to add that level of customization, mostly because I almost always want to edit text in BBEdit.
+* Now the the script knows which app that the content came from, it would be fairly easy to define different text editors depending on which app sent the text. For example, when you invoke this macro from Scrivener, it could open MultiMarkdown Composer or Byword instead of your regular app. 
 
-### App-specific Macros ###
+### “How do I use a different app besides BBEdit?”
 
-*Added on 2014-02-04:*
+The macro assumes you want to use BBEdit unless you change the `APP=` variable in the script section of the macro, as shown here:
 
-[Edit-Anywhere-BBEdit.kmmacros](https://raw.github.com/tjluoma/edit-anywhere/master/Edit-Anywhere-BBEdit.kmmacros) -- This is the macro that I am now using with BBEdit which is the easiest app to use it with since the `bbedit` command-line tool has a `--resume` feature.
-
-[Edit-Anywhere-MultiMarkdown.kmmacros](https://raw.github.com/tjluoma/edit-anywhere/master/Edit-Anywhere-MultiMarkdown.kmmacros) -- A macro to use with [MultiMarkdown Composer](http://multimarkdown.com) which demonstrates how to adapt this to work with any application using OS X’s `open` command.
-
+![](images/define-your-editor.jpg)
 
 [1]: http://www.hogbaysoftware.com/products/quickcursor
 [2]: http://barebones.com
