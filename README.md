@@ -50,12 +50,21 @@ Like so:
 
 * Now the the script knows which app that the content came from, it would be fairly easy to define different text editors depending on which app sent the text. For example, when you invoke this macro from Scrivener, it could open MultiMarkdown Composer or Byword instead of your regular app. 
 
-### “How do I use a different app besides BBEdit?”
+### FAQ: “How do I use a different app besides BBEdit?”
 
 The macro assumes you want to use BBEdit unless you change the `APP=` variable in the script section of the macro, as shown here:
 
 ![](images/define-your-editor.jpg)
 
+### FAQ: “How do I install this?”
+
+1.	[Download the macro](https://github.com/tjluoma/edit-anywhere/raw/master/Edit-Anywhere.kmmacros) (right click on that link and use save as, or equivalent.)
+
+2.	Make sure the file extension is `.kmmacros` (Be sure that your browser did  ***not*** rename it to something like `.kmmacros.txt`)
+
+3.	Double-click the file to add it to Keyboard Maestro. If it does not open in Keyboard Maestro, see Step #2. (Use the Inspector in Finder to check the full filename.)
+
+<!-- footnotes -->
 [1]: http://www.hogbaysoftware.com/products/quickcursor
 [2]: http://barebones.com
 [3]: http://www.keyboardmaestro.com/main/
