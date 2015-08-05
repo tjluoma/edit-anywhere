@@ -166,7 +166,7 @@
 						<key>IsActive</key>
 						<true/>
 						<key>IsDisclosed</key>
-						<true/>
+						<false/>
 						<key>MacroActionType</key>
 						<string>ExecuteShellScript</string>
 						<key>Path</key>
@@ -304,7 +304,7 @@ else
 fi
 
 
-if [ "$APP:l" = "bbedit" -a -x /usr/local/bin/bbedit ]
+if [[ (( $+commands[bbedit] )) &amp;&amp; "$APP:l" == "bbedit" ]]
 then
 		## IFF the user wants to use BBEdit and they have the bbedit
 		## command line tool installed, then we will use the bbedit tool
@@ -314,14 +314,14 @@ then
 
 		## We will try to open the app with the bbedit command,
 		## but if it fails we will open TextEdit
-	/usr/local/bin/bbedit \
+	bbedit \
 		--language 'Markdown' \
 		--create-unix \
 		--new-window \
 		--resume \
 		--wait \
 		-- "$FILE" \
-	 || open -a -n -e -W "$FILE"
+	 || open -n -e -W "$FILE"
 
 else
 		## if we get here, either the app is NOT BBEdit
@@ -331,7 +331,7 @@ else
 		## but if the open command fails for some reason,
 		## we will open TextEdit
 
-	open -a -n -W "$APP" "$FILE" || open -a -n -e -W "$FILE"
+	open -a "$APP" -n -W "$FILE" || open -a -n -e -W "$FILE"
 
 fi # if app is BBEdit
 
@@ -510,7 +510,7 @@ exit 0
 				<key>IsActive</key>
 				<true/>
 				<key>ModificationDate</key>
-				<real>460499322.459104</real>
+				<real>460501568.500072</real>
 				<key>Name</key>
 				<string>Edit Anywhere</string>
 				<key>Triggers</key>
