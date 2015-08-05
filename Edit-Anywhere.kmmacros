@@ -15,6 +15,38 @@
 				<key>Actions</key>
 				<array>
 					<dict>
+						<key>IsActive</key>
+						<true/>
+						<key>IsDisclosed</key>
+						<true/>
+						<key>MacroActionType</key>
+						<string>Comment</string>
+						<key>Text</key>
+						<string>If you want to change where the temporary file is stored, edit the EDIT_ANYWHERE_FILE variable.
+
+Note that the filename (and path, if any) will be relative to your $HOME. So, for example, if you want to use a file named ~/Dropbox/txt/my-very-special-name-here.txt then you should set the variable to "Dropbox/txt/my-very-special-name-here.txt" 
+
+Do NOT include the /Users/YourNameHere/ part of the path, that will be added automatically later.
+
+Do not change the variable name (EDIT_ANYWHERE_FILE) just change the part in the "To:" field.
+
+</string>
+						<key>Title</key>
+						<string>Note: You can customize 'EDIT_ANYWHERE_FILE'</string>
+					</dict>
+					<dict>
+						<key>IsActive</key>
+						<true/>
+						<key>IsDisclosed</key>
+						<true/>
+						<key>MacroActionType</key>
+						<string>SetVariableToText</string>
+						<key>Text</key>
+						<string>edit_anywhere.txt</string>
+						<key>Variable</key>
+						<string>EDIT_ANYWHERE_FILE</string>
+					</dict>
+					<dict>
 						<key>ActionName</key>
 						<string>Store to the name of the active application to the variable ‘EditAnywhereApp’</string>
 						<key>IsActive</key>
@@ -87,34 +119,6 @@
 						<false/>
 					</dict>
 					<dict>
-						<key>ActionName</key>
-						<string>Save clipboard info to ~/edit_anywhere.txt</string>
-						<key>Append</key>
-						<true/>
-						<key>Destination</key>
-						<string>~/edit_anywhere.txt</string>
-						<key>Encoding</key>
-						<string>UTF8</string>
-						<key>Format</key>
-						<string>PlainText</string>
-						<key>IsActive</key>
-						<true/>
-						<key>IsDisclosed</key>
-						<false/>
-						<key>MacroActionType</key>
-						<string>WriteFile</string>
-						<key>Name</key>
-						<string>1109C933-5030-4E31-AA95-D42DCB9F5020</string>
-						<key>RedundandDisplayName</key>
-						<string>Default Clipboard</string>
-						<key>Source</key>
-						<string>Clipboard</string>
-						<key>Text</key>
-						<string></string>
-						<key>Variable</key>
-						<string>Variable</string>
-					</dict>
-					<dict>
 						<key>Action</key>
 						<string>ByTyping</string>
 						<key>IsActive</key>
@@ -170,7 +174,7 @@
 						<key>MacroActionType</key>
 						<string>ExecuteShellScript</string>
 						<key>Path</key>
-						<string>/usr/local/scripts/km-edit-anywhere-bbedit.sh</string>
+						<string>/usr/local/scripts/km-edit-anywhere-any-editor.sh</string>
 						<key>Text</key>
 						<string>#!/bin/zsh -f
 
@@ -193,7 +197,9 @@ APP='BBEdit'
 	## If you change this,
 	## make sure you change all of the other references to this file
 	## in the Keyboard Maestro macro
-FILE="$HOME/edit_anywhere.txt"
+FILE="${HOME}/${KMVAR_EDIT_ANYWHERE_FILE}"
+
+
 
 	## OS X no longer has a good way to ensure that GUI apps like
 	## Keyboard Maestro have access to your $PATH so I often just create
@@ -221,7 +227,7 @@ fi
 NAME="[Edit Anywhere via Keyboard Maestro]"
 
 	## Change this if necessary
-	## Used for pbcopy
+	## Used for pbcopy and pbpaste
 LANG=en_US.UTF-8
 
 zmodload zsh/datetime ## needed for strftime
@@ -283,6 +289,29 @@ fi
 ##
 ## Here is where the action begins
 ##
+
+	## What do we do if they asked for a path which does not exist?
+	## Well, we will try to create the folder and then paste the file in there
+PARENT_DIR="$FILE:h"
+
+[[ ! -d "$PARENT_DIR" ]] &amp;&amp; mkdir -p "$PARENT_DIR" &amp;&amp; msg "Created $PARENT_DIR for $FILE"
+
+if [[ -e "$FILE" ]]
+then
+	pbpaste &gt;&gt; "$FILE"
+else
+	pbpaste &gt; "$FILE"
+fi
+
+EXIT="$?"
+
+if [ "$EXIT" != "1" ]
+then
+
+	msg "FATAL ERROR: Failed to create file at $FILE. Sorry."
+	exit 1
+fi
+
 
 if [[ "$KMVAR_EditAnywhereApp" == "" ]]
 then
@@ -510,7 +539,7 @@ exit 0
 				<key>IsActive</key>
 				<true/>
 				<key>ModificationDate</key>
-				<real>460501568.500072</real>
+				<real>460503455.70512199</real>
 				<key>Name</key>
 				<string>Edit Anywhere</string>
 				<key>Triggers</key>
