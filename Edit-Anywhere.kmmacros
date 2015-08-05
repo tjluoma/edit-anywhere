@@ -308,7 +308,7 @@ EXIT="$?"
 if [ "$EXIT" != "1" ]
 then
 
-	msg "FATAL ERROR: Failed to create file at $FILE. Sorry."
+	msg "FATAL ERROR: Failed to create file at $FILE. Exit = $EXIT. Sorry."
 	exit 1
 fi
 
@@ -539,7 +539,7 @@ exit 0
 				<key>IsActive</key>
 				<true/>
 				<key>ModificationDate</key>
-				<real>460503455.70512199</real>
+				<real>460503763.48495197</real>
 				<key>Name</key>
 				<string>Edit Anywhere</string>
 				<key>Triggers</key>
