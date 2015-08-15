@@ -178,6 +178,8 @@ Do not change the variable name (EDIT_ANYWHERE_FILE) just change the part in the
 						<key>Text</key>
 						<string>#!/bin/zsh -f
 
+export LANG=en_US.UTF-8
+export LOCALE=UTF-8
 
 	## This is the app that you want to use as your external editor
 	## Note that it should not include the '.app' suffix
